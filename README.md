@@ -34,7 +34,7 @@ angular.module('MyApp', ['bernhardposselt.enhancetext']);
 The filter is available in your templates by using:
 
 ```html
-<div ng-bind-html="SomeText | enhanceText"></div>
+<div bind-html-plus="SomeText | enhanceText"></div>
 ```
 
 All content to the filter is explicitely sanitized and marked as safe.
