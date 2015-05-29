@@ -20,6 +20,9 @@ var app = angular.module('bernhardposselt.enhancetext', ['ngSanitize'])
             embedYoutube: true,
             embeddedYoutubeHeight: undefined,
             embeddedYoutubeWidth: undefined,
+            embedSoundcloud: true,
+            embeddedSoundcloudHeight: undefined,
+            embeddedSoundcloudWidth: undefined,
             smilies: {}
         },
         textCache = {};

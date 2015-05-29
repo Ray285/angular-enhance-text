@@ -5,7 +5,7 @@
  */
 app.factory('TextEnhancer',
 function (SmileyEnhancer, VideoEnhancer, NewLineEnhancer, ImageEnhancer,
-          YouTubeEnhancer, LinkEnhancer) {
+          YouTubeEnhancer, LinkEnhancer, SoundCloudEnhancer) {
     return function (text, options) {
         text = escapeHtml(text);
         text = SmileyEnhancer(text, options.smilies);
@@ -26,6 +26,11 @@ function (SmileyEnhancer, VideoEnhancer, NewLineEnhancer, ImageEnhancer,
                                    options.embeddedYoutubeWidth);
         }
 
+        if (options.embedSoundcloud) {
+            text = SoundCloudEnhancer(text, options.embeddedSoundcloudHeight,
+                                   options.embeddedSoundcloudWidth);
+        }
+
         if (options.newLineToBr) {
             text = NewLineEnhancer(text);
         }
@@ -35,6 +40,19 @@ function (SmileyEnhancer, VideoEnhancer, NewLineEnhancer, ImageEnhancer,
         }
 
         return text;
+    };
+});
+app.directive('bindHtmlPlus', function ($compile) {
+    return function(scope, element, attrs) {
+        scope.$watch(
+            function(scope) {
+                return scope.$eval(attrs.bindHtmlPlus);
+            },
+            function(value) {
+                element.html(value);
+                $compile(element.contents())(scope);
+            }
+        );
     };
 });
 

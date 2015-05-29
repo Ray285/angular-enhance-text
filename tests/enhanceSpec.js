@@ -101,5 +101,16 @@
             toBe('hey http://www.youtube.com/watch?v=ksM520q4LEY');
     }));
 
+    it('should not embed soundcloud if turned off', inject(function ($filter) {
+        provider.setOptions({
+            embedLinks: false,
+            embedSoundcloud: false
+        });
+        var filter = $filter('enhanceText');
+
+        expect(filter('hey https://soundcloud.com/generation-bass-1/02-flashback-brujjas-feat').$$unwrapTrustedValue()).
+            toBe('hey https://soundcloud.com/generation-bass-1/02-flashback-brujjas-feat');
+    }));
+
 
 });
